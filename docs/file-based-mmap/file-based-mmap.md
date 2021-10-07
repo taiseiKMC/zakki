@@ -38,7 +38,8 @@ page out できなくなった場合は OOM-killer を実行します.
 2. 大量のデータを allocate する
     - このとき mmap で開いたファイルが GC されないよう気をつける
 
-![](./graph.pdf)
+<iframe src="./graph.pdf" width="100%" height="320px">
+</iframe>
 
 - `pmap rss total` が pmap によって表示された RSS の値(大体使用メモリ量)
 - `pmap sum of shared rss` が実メモリサイズ以上のファイルを全部読み込むことで使用したメモリ量
@@ -110,17 +111,13 @@ Address は仮想メモリのアドレスで, `Address` から `Address + KBytes
 実行環境では page_size は 4KB なので, RSS も Address も 4KB の倍数になっています.
 Dirty は mapping 中で変更があった, つまり page out する際に書き込みをする必要のある量です.
 Mode は権限です. rwx に加えて, shared (他のプロセスと実メモリを共有するかどうか) と private (Copy-on-write) の属性があります.
-Mapping は開いているファイルです. 
+Mapping は開いているファイルです.
 共有ライブラリやバイナリが file-backed mapping で開かれている様子や,
 stack などのメモリ領域が anonymous mapping で開かれているのが分かります.
 
 ## footnote
-[^malloc] https://www.valinux.co.jp/technologylibrary/document/linux/malloc0001/
+[^malloc]: https://www.valinux.co.jp/technologylibrary/document/linux/malloc0001/
 
-[^virtual-memory] https://ja.wikipedia.org/wiki/%E4%BB%AE%E6%83%B3%E8%A8%98%E6%86%B6
+[^virtual-memory]: https://ja.wikipedia.org/wiki/%E4%BB%AE%E6%83%B3%E8%A8%98%E6%86%B6
 
-[^paging] https://www.kimullaa.com/entry/2019/12/01/143242#%E3%82%B9%E3%83%AF%E3%83%83%E3%83%97,
-https://blog.a-know.me/entry/2017/07/15/131555,
-https://tombo2.hatenablog.com/entry/2016/12/30/233151,
-https://wiki.bit-hive.com/linuxkernelmemo/pg/Swap%20-%20%E3%83%9A%E3%83%BC%E3%82%B8%E3%82%A2%E3%82%A6%E3%83%88,
-https://www.kernel.org/doc/gorman/html/understand/understand013.html#toc71
+[^paging]: https://www.kimullaa.com/entry/2019/12/01/143242#%E3%82%B9%E3%83%AF%E3%83%83%E3%83%97, https://blog.a-know.me/entry/2017/07/15/131555, https://tombo2.hatenablog.com/entry/2016/12/30/233151, https://wiki.bit-hive.com/linuxkernelmemo/pg/Swap%20-%20%E3%83%9A%E3%83%BC%E3%82%B8%E3%82%A2%E3%82%A6%E3%83%88, https://www.kernel.org/doc/gorman/html/understand/understand013.html#toc71
