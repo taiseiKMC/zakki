@@ -4,7 +4,7 @@
 
 <iframe
     class="slide"
-    src="https://github.com/taiseiKMC/md5/blob/master/md5coll.pdf"
+    src="./md5coll.pdf"
     width="100%"
     height="400px"
 ></iframe>
