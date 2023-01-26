@@ -1,5 +1,6 @@
 技術的メモなど
 
+- [Unix Pass によるパスワード管理](./unix-pass/unix-pass.md)
 - [gitlab で opam-publish をする](./opam-publish/opam-publish.md)
 - [Mmap の pageout 挙動調査](./file-based-mmap/file-based-mmap.md)
 - [Github Classroom の為の Circle CI 設定](https://github.com/taiseiKMC/github_education_with_circle_ci_document)
