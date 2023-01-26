@@ -89,11 +89,7 @@ OpenKeyChain 依存しています.
 
 ### まとめ
 全体像はこちらになります.
-<iframe
-    class="slide"
-    src="./unix-pass-ponchi.pdf"
-    width="100%"
-></iframe>
+<img src="unix-pass-ponchi.svg">
 
 
 ## おまけ: Firefox 拡張の passff
