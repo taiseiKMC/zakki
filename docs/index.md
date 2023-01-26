@@ -1,6 +1,7 @@
 # 雑記
 技術的メモなど
 
+- [gitlab で opam-publish をする](./opam-publish/opam-publish.md)
 - [Mmap の pageout 挙動調査](./file-based-mmap/file-based-mmap.md)
 - [Github Classroom の為の Circle CI 設定](https://github.com/taiseiKMC/github_education_with_circle_ci_document)
     - CircleCI の仕様が 2020 年に大分変わったので多分古い
