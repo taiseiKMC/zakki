@@ -1,3 +1,5 @@
 theme: jekyll-theme-slate
+title: 雑記
+description: 技術メモなど
 markdown: kramdown
 google_analytics: G-GFW70SP6QR
