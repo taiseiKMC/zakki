@@ -3,7 +3,7 @@
 こんなことできるんだ〜って思った言語機能についていくつか紹介します(というか以前紹介したのを改めてまとめます).
 ここで紹介している機能もしていない機能も公式マニュアル https://ocaml.org/manual/index.html にあります.
 
-(原題: OCaml とかいう誰も知らん言語)
+(原題: [OCaml とかいう誰も知らん言語](https://github.com/taiseiKMC/ocaml-nobody-knows-slide/blob/master/ocaml-nobody-knows.pdf))
 
 - Extensible Variant Type
 - Polymorphic Variant
