@@ -1,3 +1,5 @@
+- [OCaml のあまり知られてなさそうな言語機能紹介](./ocaml-nobody-knows/ocaml-nobody-knows.md)
+    - 原題: OCaml とかいう誰も知らん言語
 - [Unix Pass によるパスワード管理](./unix-pass/unix-pass.md)
 - [gitlab で opam-publish をする](./opam-publish/opam-publish.md)
 - [mmap の pageout 挙動調査](./file-based-mmap/file-based-mmap.md)
