@@ -1,3 +1,4 @@
+- [Shellscript(bash) 文法まとめ](./bash-syntax/bash-syntax.md)
 - [OCaml のあまり知られてなさそうな言語機能紹介](./ocaml-nobody-knows/ocaml-nobody-knows.md)
     - 原題: OCaml とかいう誰も知らん言語
 - [Unix Pass によるパスワード管理](./unix-pass/unix-pass.md)
