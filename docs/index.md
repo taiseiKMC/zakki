@@ -1,3 +1,4 @@
+- [Jsoo でスイカゲーム](./jsoo-watermelon/jsoo-watermelon.md)
 - [Tagless-final は難しい](./tagless-final/tagless-final.md)
 - [Shellscript(bash) 文法まとめ](./bash-syntax/bash-syntax.md)
 - [OCaml のあまり知られてなさそうな言語機能紹介](./ocaml-nobody-knows/ocaml-nobody-knows.md)
