@@ -1,5 +1,6 @@
 # gdbの使い方まとめ
 gdbのコマンドは、一意に決まるところまで省略できる
+
 - 起動
 ```
 $gdb <file>
@@ -26,7 +27,7 @@ gdb$ set args <コマンドライン引数>...
 ```
 gdb$ q
 ```
-非省略形: run
+非省略形: quit
 
 
 - 実行中のプログラムを止める
@@ -235,7 +236,7 @@ gdb$ set follow-fork-mode parent # default は child
 gdb$ set detach-on-fork off # default は on
 ```
 
-## セキュリティ系拡張
+## gdb-peda によるセキュリティ系拡張
 - ASLRの有無を確認
 ```
 gdb-peda$ aslr
