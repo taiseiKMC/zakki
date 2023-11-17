@@ -21,7 +21,8 @@ OCaml の標準ライブラリは　Sys とか Unix 辺りを除いてだいた�
 Github[^jsoo_examples] を見るとちゃんと置いてあります.
 
 とはいえこれだけだと取っ掛かり辛くて困ったので,
-私はこれ[^jsoo_introduction]とかこれ[^google_chart]を参考にしました.
+私は [hackmd で転がっていた tutoreal](https://hackmd.io/@Swerve/HyhrqnFeF) とか
+[google chart を移植する記事](https://camlspotter.hatenablog.com/entry/20111015/1318664763) を参考にしました.
 
 ## ライブラリ導入編
 せっかくだし jsoo でなんか実装してみようかと考えていたところ,
@@ -203,6 +204,7 @@ let render =
         val engine = engine
     end)
 ```
+
 
 | ppx | Unsafe |
 |:-:|:-:|
@@ -452,10 +454,10 @@ js 標準のライブラリなんかは jsoo 自体にバインディングが�
 まぁそれっぽい感じで動いているんじゃないんですかね. たまに容器を貫通するけれどまぁいっか.
 絵かきでもなければグラフィックに拘りも無かったため絵面地味なのは致し方なし.
 
-![射出された](./watermelon-game.png)
+![melon](./watermelon-game.png)
 
-https://taiseikmc.github.io/watermelon-game-jsoo/ に置いてあります.
-`dune build` して jekyll でサイトをビルドしてデプロイするみたいなのを github actions[^github-actions] でやってます.
+<https://taiseikmc.github.io/watermelon-game-jsoo/> に置いてあります.
+`dune build` して jekyll でサイトをビルドしてデプロイするみたいなのを github actions[^github_actions] でやってます.
 
 # 感想
 ocaml による型のある世界に js を持ち込めると安心感が生まれますね.
@@ -475,12 +477,9 @@ ts は書いたことがないのでまたいずれ.
 [^jsoo]: http://ocsigen.org/js_of_ocaml/latest/manual/overview
 [^dune]: 詳しくは https://dune.readthedocs.io/en/latest/jsoo.html
 [^jsoo_examples]: https://github.com/ocsigen/js_of_ocaml/tree/master/examples
-[^jsoo_introduction]: https://hackmd.io/@Swerve/HyhrqnFeF
-[^google_chart]: https://camlspotter.hatenablog.com/entry/20111015/1318664763
 [^ppx]: どうも PPX が型アノテーションをつけまくっているおかげなようです
-[^mysterious]: ppx は AST を組み替えるだけで, 最終的には `Unsafe.get hoge "Foo"` という感じで文字列へ変換されるからいけるんだと思う
+[^mysterious]: ppx は AST を組み替えるだけで, 最終的には `Unsafe.get hoge "Foo"` という感じで文字列へ変換されるからいけるんだと思います
 [^matter]: https://github.com/liabru/matter-js#readme
 [^matter_docs]: https://brm.io/matter-js/docs/
-[^refs]: なんか wiki からのリンクが壊れていたが... https://brm.io/matter-js/demo/
-そのため [matter.jsの基本的な機能を使ったサンプル集](https://mmsrtech.com/entry/2022/10/16/210254#%E8%A1%9D%E7%AA%81%E3%83%95%E3%82%A3%E3%83%AB%E3%82%BF%E3%83%BC) も参考にしました
-[^github-actions]: 前は github-io 用に jekyll でビルドだけしてくれるみたいな感じでしたが, いつの間にか色々できるようになってますねぇ. これはこれで記事が一本くらい書けそう
+[^refs]: なんか wiki からのリンクが壊れていたが... https://brm.io/matter-js/demo/ そのため [matter.jsの基本的な機能を使ったサンプル集](https://mmsrtech.com/entry/2022/10/16/210254#%E8%A1%9D%E7%AA%81%E3%83%95%E3%82%A3%E3%83%AB%E3%82%BF%E3%83%BC) も参考にしました
+[^github_actions]: 前は github-io 用に jekyll でビルドだけしてくれるみたいな感じでしたが, いつの間にか色々できるようになってますねぇ. これはこれで記事が一本くらい書けそう
