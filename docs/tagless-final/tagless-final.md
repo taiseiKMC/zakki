@@ -350,7 +350,7 @@ str'' = eval'' expr''
 ocaml だと module functor を使いますが, 同様に AST を書くよりは拡張しやすいと思います.
 
 # Footnote
-[^tagless-initial]: https://serokell.io/blog/introduction-tagless-final DSLで表現したいことは全てASTで表現できる(AST から変換できる, AST が始対象)ってことか？
-[^typed-tagless-final]: https://okmij.org/ftp/tagless-final/course/lecture.pdf
-[^cookbook]: https://okmij.org/ftp/tagless-final/cookbook.html
+[^tagless-initial]: <https://serokell.io/blog/introduction-tagless-final> DSLで表現したいことは全てASTで表現できる(AST から変換できる, AST が始対象)ってことか？
+[^typed-tagless-final]: <https://okmij.org/ftp/tagless-final/course/lecture.pdf>
+[^cookbook]: <https://okmij.org/ftp/tagless-final/cookbook.html>
 [^denotational]: 表示的意味論が使われなくなった(要出典)のに通づる気がする. 人類には早すぎたかもしれない

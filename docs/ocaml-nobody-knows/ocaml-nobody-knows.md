@@ -1,7 +1,7 @@
 # OCaml のあまり知られてなさそうな言語機能紹介
 ここ数年 OCaml を書いていて,
 こんなことできるんだ〜って思った言語機能についていくつか紹介します(というか以前紹介したのを改めてまとめます).
-ここで紹介している機能もしていない機能も公式マニュアル https://ocaml.org/manual/index.html にあります.
+ここで紹介している機能もしていない機能も公式マニュアル <https://ocaml.org/manual/index.html> にあります.
 
 (原題: [OCaml とかいう誰も知らん言語](https://github.com/taiseiKMC/ocaml-nobody-knows-slide/blob/master/ocaml-nobody-knows.pdf))
 
@@ -231,7 +231,7 @@ match%lwt x with ... ==> [%lwt match x with ...] (* exptention point *)
 もちろん各々の ppx は最初から入っているわけではありません.
 お好きな ppx を書くか探してきて dune の設定ファイルに書いてください.
 どんな ppx があるのかは,
-http://ocamlverse.net/content/metaprogramming.html 辺りを見るといいかもしれません.
+<http://ocamlverse.net/content/metaprogramming.html> 辺りを見るといいかもしれません.
 
 
 ## Substitution inside a signature
@@ -363,12 +363,12 @@ Locally Abstract Type が必要なのは型推論器の都合で,
 最近 5.0 もリリースされるとかでまだまだ進化しそうです.
 
 ## Footnote
-[^varianceAnnot]: このへん https://blog.janestreet.com/a-and-a/ を読んで訳した感じです
-[^attr]: https://v2.ocaml.org/manual/attributes.html
-[^ppx]: https://dailambda.jp/slides/2021-04-09-ppx.html\#/what-is-ppx-1
+[^varianceAnnot]: このへん <https://blog.janestreet.com/a-and-a/> を読んで訳した感じです
+[^attr]: <https://v2.ocaml.org/manual/attributes.html>
+[^ppx]: <https://dailambda.jp/slides/2021-04-09-ppx.html\#/what-is-ppx-1>
 [^payload]: 指定すれば式だけではなく, 型, パターンなどもいけます
 [^comp]: PPX で型情報を使うために, 無理やり型付けして型情報付き AST を ppx に渡すようにする研究があるとか無いとか
-[^gadt]: https://www.math.nagoya-u.ac.jp/~garrigue/papers/ml2011-show.pdf
-[^epa]: https://v2.ocaml.org/manual/polymorphism.html より引用
-[^lat]: https://v2.ocaml.org/manual/locallyabstract.html より引用
-[^gadt2]: https://v2.ocaml.org/manual/gadts-tutorial.html
+[^gadt]: <https://www.math.nagoya-u.ac.jp/~garrigue/papers/ml2011-show.pdf>
+[^epa]: <https://v2.ocaml.org/manual/polymorphism.html> より引用
+[^lat]: <https://v2.ocaml.org/manual/locallyabstract.html> より引用
+[^gadt2]: <https://v2.ocaml.org/manual/gadts-tutorial.html>

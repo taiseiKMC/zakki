@@ -116,8 +116,8 @@ Mapping は開いているファイルです.
 stack などのメモリ領域が anonymous mapping で開かれているのが分かります.
 
 ## footnote
-[^malloc]: https://www.valinux.co.jp/technologylibrary/document/linux/malloc0001/
+[^malloc]: <https://www.valinux.co.jp/technologylibrary/document/linux/malloc0001/>
 
-[^virtual-memory]: https://ja.wikipedia.org/wiki/%E4%BB%AE%E6%83%B3%E8%A8%98%E6%86%B6
+[^virtual-memory]: <https://ja.wikipedia.org/wiki/%E4%BB%AE%E6%83%B3%E8%A8%98%E6%86%B6>
 
-[^paging]: https://www.kimullaa.com/entry/2019/12/01/143242#%E3%82%B9%E3%83%AF%E3%83%83%E3%83%97, https://blog.a-know.me/entry/2017/07/15/131555, https://tombo2.hatenablog.com/entry/2016/12/30/233151, https://wiki.bit-hive.com/linuxkernelmemo/pg/Swap%20-%20%E3%83%9A%E3%83%BC%E3%82%B8%E3%82%A2%E3%82%A6%E3%83%88, https://www.kernel.org/doc/gorman/html/understand/understand013.html#toc71
+[^paging]: <https://www.kimullaa.com/entry/2019/12/01/143242#%E3%82%B9%E3%83%AF%E3%83%83%E3%83%97>, <https://blog.a-know.me/entry/2017/07/15/131555>, <https://tombo2.hatenablog.com/entry/2016/12/30/233151>, <https://wiki.bit-hive.com/linuxkernelmemo/pg/Swap%20-%20%E3%83%9A%E3%83%BC%E3%82%B8%E3%82%A2%E3%82%A6%E3%83%88>, <https://www.kernel.org/doc/gorman/html/understand/understand013.html#toc71>

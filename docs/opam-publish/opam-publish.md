@@ -3,7 +3,7 @@
 
 ## opam-publish について
 opam で install できる package は,
-default では https://github.com/ocaml/opam-repository で管理されているリポジトリを参照しますが,
+default では <https://github.com/ocaml/opam-repository> で管理されているリポジトリを参照しますが,
 なんとここへ自分の好きな package を追加する PR をワンコマンドで作成することができます.
 それが opam-publish[^opam-publish] です.
 
@@ -50,6 +50,6 @@ gitlab の場合も同様に, tag[^gitlab-tags] や release のページから�
 めでたしめでたし
 
 ## Footnote
-[^opam-publish]: https://github.com/ocaml-opam/opam-publish
-[^github-tags]: https://github.com/USER/REPOSITORY/tags など
-[^gitlab-tags]: https://gitlab.com/USER/REPOSITORY/-/tags など
+[^opam-publish]: <https://github.com/ocaml-opam/opam-publish>
+[^github-tags]: <https://github.com/USER/REPOSITORY/tags> など
+[^gitlab-tags]: <https://gitlab.com/USER/REPOSITORY/-/tags> など

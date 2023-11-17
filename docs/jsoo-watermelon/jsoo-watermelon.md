@@ -32,7 +32,7 @@ Github[^jsoo_examples] を見るとちゃんと置いてあります.
 js の物理エンジンが欲しいわけですが, 今回は検索して一番上に出てきた matter.js[^matter] というライブラリを採用しました.
 
 ### セットアップ
-まずは公式のチュートリアル (https://github.com/liabru/matter-js/wiki/Getting-started) を動かすことを目標にします.
+まずは公式のチュートリアル (<https://github.com/liabru/matter-js/wiki/Getting-started>) を動かすことを目標にします.
 
 とりあえず ocaml のプロジェクトファイル(エントリーポイントとなるソースファイル(ここでは `main.ml` とする), と dune ファイル等)を作ります.
 
@@ -474,12 +474,12 @@ ts は書いたことがないのでまたいずれ.
 これを機会に objective objective した部分を触って理解が深まって良かったです.
 
 # Footnote
-[^jsoo]: http://ocsigen.org/js_of_ocaml/latest/manual/overview
-[^dune]: 詳しくは https://dune.readthedocs.io/en/latest/jsoo.html
-[^jsoo_examples]: https://github.com/ocsigen/js_of_ocaml/tree/master/examples
+[^jsoo]: <http://ocsigen.org/js_of_ocaml/latest/manual/overview>
+[^dune]: 詳しくは <https://dune.readthedocs.io/en/latest/jsoo.html>
+[^jsoo_examples]: <https://github.com/ocsigen/js_of_ocaml/tree/master/examples>
 [^ppx]: どうも PPX が型アノテーションをつけまくっているおかげなようです
 [^mysterious]: ppx は AST を組み替えるだけで, 最終的には `Unsafe.get hoge "Foo"` という感じで文字列へ変換されるからいけるんだと思います
-[^matter]: https://github.com/liabru/matter-js#readme
-[^matter_docs]: https://brm.io/matter-js/docs/
-[^refs]: なんか wiki からのリンクが壊れていたが... https://brm.io/matter-js/demo/ そのため [matter.jsの基本的な機能を使ったサンプル集](https://mmsrtech.com/entry/2022/10/16/210254#%E8%A1%9D%E7%AA%81%E3%83%95%E3%82%A3%E3%83%AB%E3%82%BF%E3%83%BC) も参考にしました
+[^matter]: <https://github.com/liabru/matter-js#readme>
+[^matter_docs]: <https://brm.io/matter-js/docs/>
+[^refs]: なんか wiki からのリンクが壊れていたが... <https://brm.io/matter-js/demo/> そのため [matter.jsの基本的な機能を使ったサンプル集](https://mmsrtech.com/entry/2022/10/16/210254#%E8%A1%9D%E7%AA%81%E3%83%95%E3%82%A3%E3%83%AB%E3%82%BF%E3%83%BC) も参考にしました
 [^github_actions]: 前は github-io 用に jekyll でビルドだけしてくれるみたいな感じでしたが, いつの間にか色々できるようになってますねぇ. これはこれで記事が一本くらい書けそう
