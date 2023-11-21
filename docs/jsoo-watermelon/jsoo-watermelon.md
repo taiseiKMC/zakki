@@ -354,6 +354,8 @@ let _ =
 
 ```ocaml
 module Matter = struct
+  (** x と y の 2 つの property を持つ
+      vector オブジェクト の型 *)
   class type vector = object
     method x : float Js.prop
     method y : float Js.prop
@@ -371,13 +373,6 @@ module Matter = struct
   let _Body = _Matter##.Body
   let _Events = _Matter##.Events
   let _Vector : vectorModule Js.t = _Matter##.Vector
-
-  (** x と y の 2 つの property を持つ
-      vector オブジェクト の型 *)
-  class type vector = object
-    method x : float Js.prop
-    method y : float Js.prop
-  end
 
   (** JS の Vector モジュールのラッパー *)
   module Vector = struct
