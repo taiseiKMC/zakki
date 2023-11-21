@@ -208,10 +208,10 @@ let render =
 
 | ppx | Unsafe |
 |:-:|:-:|
-| `hoge##fuga arg0 arg1 ...` | `meth_call hoge "fuga" [\| arg0; arg1; ...\|]` |
+| `hoge##fuga arg0 arg1 ...` | `meth_call hoge "fuga" [| arg0; arg1; ...|]` |
 | `hoge##.fuga` | `get hoge "fuga"` |
 | `hoge##.fuga := piyo` | `set hoge "fuga" piyo` |
-| `object%js .. end` | `obj [\| .. \|]` |
+| `object%js .. end` | `obj [| .. |]` |
 
 ppx によって演算子 `##` と `##.` や `object%js` 記法が導入されて,
 ocaml がより自然に js っぽく記述できるようになります.
@@ -234,11 +234,12 @@ create の引数に渡している object のプロパティが型として現�
 open Js_of_ocaml
 
 (* module aliases *)
-let _Engine = Js.Unsafe.pure_js_expr "Matter.Engine"
-let _Render = Js.Unsafe.pure_js_expr "Matter.Render"
-let _Runner = Js.Unsafe.pure_js_expr "Matter.Runner"
-let _Bodies = Js.Unsafe.pure_js_expr "Matter.Bodies"
-let _Composite = Js.Unsafe.pure_js_expr "Matter.Composite"
+let _Matter = Js.Unsafe.pure_js_expr "Matter"
+let _Engine = _Matter##.Engine
+let _Render = _Matter##.Render
+let _Runner = _Matter##.Runner
+let _Bodies = _Matter##.Bodies
+let _Composite = _Matter##.Composite
 
 (* create an engine *)
 let engine = _Engine##create ()
@@ -349,7 +350,7 @@ let _ =
   - 最上部に長方形オブジェクトを置いて, 当たり判定をとる
   - 投下した果物と衝突検出して即ゲームオーバーになるのを防ぐため, 果物を投下してから 1 秒程度は判定を無視
 
-という感じでしょうか. やるだけ というのも乱暴なので, 同じ果物の衝突部分がどんな感じになるか見てみます.
+という感じでしょうか. やるだけ というのも乱暴なので, 同じ果物の衝突部分がどんな感じになるか見てみます[^3collisions].
 
 ```ocaml
 module Matter = struct
@@ -365,10 +366,11 @@ module Matter = struct
     method mult : vector Js.t -> float -> vector Js.t Js.meth
   end
 
-  let _Composite = Js.Unsafe.pure_js_expr "Matter.Composite"
-  let _Body = Js.Unsafe.pure_js_expr "Matter.Body"
-  let _Events = Js.Unsafe.pure_js_expr "Matter.Events"
-  let _Vector : vectorModule Js.t = Js.Unsafe.pure_js_expr "Matter.Vector"
+  let _Matter = Js.Unsafe.pure_js_expr "Matter"
+  let _Composite = _Matter##.Composite
+  let _Body = _Matter##.Body
+  let _Events = _Matter##.Events
+  let _Vector : vectorModule Js.t = _Matter##.Vector
 
   (** x と y の 2 つの property を持つ
       vector オブジェクト の型 *)
@@ -452,7 +454,6 @@ js 標準のライブラリなんかは jsoo 自体にバインディングが�
 ### できたもの
 原作を持っていないためプレイ感がどれくらい近いかとかはわかりませんが,
 まぁそれっぽい感じで動いているんじゃないんですかね. たまに容器を貫通するけれどまぁいっか.
-絵かきでもなければグラフィックに拘りも無かったため絵面地味なのは致し方なし.
 
 ![melon](./watermelon-game.png)
 
@@ -482,4 +483,5 @@ ts は書いたことがないのでまたいずれ.
 [^matter]: <https://github.com/liabru/matter-js#readme>
 [^matter_docs]: <https://brm.io/matter-js/docs/>
 [^refs]: なんか wiki からのリンクが壊れていたが... <https://brm.io/matter-js/demo/> そのため [matter.jsの基本的な機能を使ったサンプル集](https://mmsrtech.com/entry/2022/10/16/210254#%E8%A1%9D%E7%AA%81%E3%83%95%E3%82%A3%E3%83%AB%E3%82%BF%E3%83%BC) も参考にしました
-[^github_actions]: 前は github-io 用に jekyll でビルドだけしてくれるみたいな感じでしたが, いつの間にか色々できるようになってますねぇ. これはこれで記事が一本くらい書けそう
+[^3collisions]: 実はこのコードだと果物が3つ同時に衝突した場合にとんでもないことになります...
+[^github_actions]: 前は github-io 用に jekyll でビルドだけしてくれるみたいな感じでしたが, いつの間にか色々できるようになってますねぇ
