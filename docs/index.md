@@ -1,3 +1,4 @@
+- [Proof of work を GPU に計算させたら確かに CPU より早かった](./cuda-pow/cuda-pow.md)
 - [Jsoo でスイカゲーム](./jsoo-watermelon/jsoo-watermelon.md)
 - [Tagless-final は難しい](./tagless-final/tagless-final.md)
 - [Shellscript(bash) 文法まとめ](./bash-syntax/bash-syntax.md)
