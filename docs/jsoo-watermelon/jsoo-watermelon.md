@@ -362,6 +362,8 @@ module Matter = struct
   end
 
   class type vectorModule = object
+    (* [create_int] と [create_float] はどちらも
+       [Vector.create] の呼出になる *)
     method create_int : int -> int -> vector Js.t Js.meth
     method create_float : float -> float -> vector Js.t Js.meth
     method add : vector Js.t -> vector Js.t -> vector Js.t Js.meth
@@ -389,19 +391,9 @@ module Matter = struct
   end
 end
 
-(** Matter.js の body オブジェクトの label に埋め込む,
-    果物の情報 *)
-module type Label = sig
-  type t = { index : int (* 果物の大きさの番号 *); .. }
-  val to_string : t -> string
-  val of_string_opt : string -> t option
-end
-
 (** [createBall (x, y) index] は
     座標 [(x,y)] に [index] 番目の大きさの果物を生成する *)
-let createBall : float * float -> int -> unit = fun (x, y) index ->
-  let label = Label.to_string { index; ... } in
-  ...
+let createBall : float * float -> int -> unit = fun (x, y) index -> ...
 
 let collison =
   (* ある 2 オブジェクトが衝突し始めたら発生するイベントを登録する *)
@@ -413,10 +405,10 @@ let collison =
         (fun p ->
           let a = p##.bodyA in
           let b = p##.bodyB in
-          let optA = Label.of_string_opt a##.label in
-          let optB = Label.of_string_opt b##.label in
+          let optA = int_of_string_opt a##.label in
+          let optB = int_of_string_opt b##.label in
           match optA, optB with
-          | Some {index; _}, Some {index = indexB; _}
+          | Some index, Some indexB
             when index = indexB ->
             (* label に書かれた情報から同じ大きさの果物か判定 *)
             begin
@@ -425,8 +417,8 @@ let collison =
               let posB = b##.position in
               (* 2 オブジェクトの中間座標を計算 *)
               let posM = mult (add posA posB) 0.5 in
-              let n = (* 中間座標に1サイズ大きい果物を生成 *)
-                createBall (posM##.x, posM##.y) (index + 1)
+              (* 中間座標に1サイズ大きい果物を生成 *)
+              let n = createBall (posM##.x, posM##.y) (index + 1)
               in
               (* 衝突した 2 果物を世界から削除 *)
               Matter._Composite##remove engine##.world (Js.array [| a; b |]);
