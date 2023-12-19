@@ -1,4 +1,4 @@
-# 赤黒木のおさらいをした
+# insert/erase ベースと merge/split ベースの赤黒木
 
 やばいデータ構造の代名詞みたいな赤黒木を以前
 insert/erase ベースで書きましたが, merge/split ベースで書いてみようと思い立ったので実装しました.
@@ -243,8 +243,8 @@ eraseAux2(node):
 
 ```
 
-union, intersect, diff はいずれも insert/erase をどっちかの木の全要素に対して繰り返すだけで実装できますから, $O(n\log(m))$です.
-$n < m$ の方が早いので, どちらを基準にするかには注意した方がいいです.
+union, intersect, diff はいずれも insert/erase をどっちかの木の全要素に対して繰り返すだけで実装できますから $O(n\log(n))$[^rough-order] です.
+要素数が少ない方を iterate した方が早いので, どちらを基準にするかには注意した方がいいです.
 
 ## merge/split
 赤黒木の実装方針には insert/erase ベースと merge/split ベースの二種類があるらしいですが, こっちの方がはるかに単純です.
@@ -390,7 +390,7 @@ union(t0, t1):
     //t0 = merge(left, t1.value, right)
 ```
 
-計算量は merge が$O(\log(n) - \log(m))$(高さの差),
+計算量は merge が$O(\log(n) - \log(m))$(=高さの差),
 split が $O(\log(n))$,
 union は $O(n\log(\frac{n}{m} + 1))$ のようです[^order].
 insert/erase を繰り返すよりO的には若干早いんですね.
@@ -432,10 +432,10 @@ diff(t0, t1): // t0 - t1
 ## 実装
 insert/erase ベースは特に気を抜くとすぐバグりましたね.
 よくあったのが,
-- node の子供の色で場合分けしようとするんですが,
-赤か黒かだけじゃなくてそもそも子供が存在するかということに気を付けないとすぐセグフォします
-- 子供を付け替えたりするときに, 子供から見た親をちゃんと指定するのを忘れていると, 木がループし始めます
-- 親をたどるときに, ノードが根だと辿れずセグフォします
+- node の子供の色で場合分けしようとすると,
+赤か黒かだけじゃなくてそもそも子供が存在するかということに気を付けないとすぐセグフォする
+- 子供を付け替えたりするときに, 子供から見た親をちゃんと指定するのを忘れていると, 木がループし始める
+- 親をたどるときに, ノードが根だと辿れずセグフォする
 
 気合で頑張りましょう. merge/split ベースでもマシとはいえ同じ落とし穴はあるので気を付けないといけないですね.
 
@@ -450,11 +450,10 @@ insert/erase ベースは特に気を抜くとすぐバグりましたね.
 - 宣言と実装を分けると無限に `template` って書かされるの何とかなりませんかね
 
 
-<https://github.com/taiseiKMC/CompetitivePrograming/blob/master/RedBlackTree.cpp>
-
-(プロコンで使うことを想定して書いたので, `using namespace = std` 等テンプレートを前提にしてます)
+[source](https://gist.github.com/taiseiKMC/3e947f6aa2d25a9b61f21bb7184619c2)
 
 # Footnote
 [^color]: [wikipedia](https://en.wikipedia.org/wiki/Red%E2%80%93black_tree) 曰く, レーザープリンターで印刷したときの色が映えるから赤が選ばれたらしい
 [^ref]: [みんなのデータ構造](https://www.amazon.co.jp/%E3%81%BF%E3%82%93%E3%81%AA%E3%81%AE%E3%83%87%E3%83%BC%E3%82%BF%E6%A7%8B%E9%80%A0-Pat-Morin/dp/4908686068) を参考に実装したような気がします
+[^rough-order]: n が何なのかを避けてますが両方の木のノードの和です? n と m を それぞれの木のノード数としてスターリングを使うと, $O(\sum_{k=n}^{n+m}{\log(k)}) = O(\log(\frac{(n+m)!}{n!})) = O(\log(\frac{(n+m)^{n+m+\frac{1}{2}} e^{1-(n+m)}}{n^{n+\frac{1}{2}} e^{1-n}})) = O((n+m)\log(n+m) - n\log(n))$ くらいにはなります.
 [^order]: <https://en.wikipedia.org/wiki/Red%E2%80%93black_tree>, <https://shifth.hatenablog.com/entry/2015/05/10/103528>
