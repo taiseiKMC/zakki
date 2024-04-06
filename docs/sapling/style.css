@@ -1,0 +1,10 @@
+.center {
+  width: 70%;
+  height: 70%;
+  display: block;
+  margin: auto;
+}
+pre {
+  max-height: 500px;
+  min-width: max-content;
+}
