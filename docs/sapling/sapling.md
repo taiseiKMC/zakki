@@ -82,8 +82,11 @@ fg # to put resume the transfer
 が行われています. 
 
 ![](./sapling_flow0.svg){:.center}
+
 ![](./sapling_flow1.svg){:.center}
+
 ![](./sapling_flow2.svg){:.center}
+
 ![](./sapling_flow3.svg){:.center}
 
 
