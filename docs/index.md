@@ -1,3 +1,4 @@
+- [EdDSA 理解したい](./eddsa/eddsa.md)
 - [ECDSA を実装した](./ecdsa/ecdsa.md)
 - [Sapling protocol と向き合う](./sapling/sapling.md)
 - [insert/erase ベースと merge/split ベースの赤黒木](./rb-tree/rb-tree.md)
