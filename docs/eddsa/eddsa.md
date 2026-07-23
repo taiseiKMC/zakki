@@ -20,15 +20,17 @@ $$
 これらは Montgomery 型楕円曲線 $\beta v^2 = u^3 + \alpha u^2 + u$ を経由して次のように変換できます
 
 $$
-u = \frac{y+1}{y-1}\\
-v = \frac{(y+1)}{x(y-1)}\\
-\alpha = \frac{2(a+d)}{a-d}\\
-\beta = \frac{4}{a-d}\\
+\begin{aligned}
+u & = \frac{y+1}{y-1}\\
+v & = \frac{(y+1)}{x(y-1)}\\
+\alpha & = \frac{2(a+d)}{a-d}\\
+\beta & = \frac{4}{a-d}\\
 \\
-X = u-\frac{\alpha}{3}\\
-Y = \sqrt{\beta} v\\
-A = 1 - \frac{\alpha^2}{3}\\
-B = \frac{2\alpha^3}{27}-\frac{\alpha}{3}
+X & = u-\frac{\alpha}{3}\\
+Y & = \sqrt{\beta} v\\
+A & = 1 - \frac{\alpha^2}{3}\\
+B & = \frac{2\alpha^3}{27}-\frac{\alpha}{3}
+\end{aligned}
 $$
 
 ($a-d<0$ のときは短縮 Weierstrass 型への変換が定義できませんが, 一般 Weierstrass 型なら定まるそうです)
@@ -50,19 +52,20 @@ $$
 
 ## Algorithm
 ### Parameters
-[EdDSA for more curves](https://ed25519.cr.yp.to/eddsa-20150704.pdf) にそのまま記載があります.
-元論文は [High-speed high-security signatures](https://ed25519.cr.yp.to/ed25519-20110926.pdf) ですが, 多少一般化されています.
+ECDSA 同様, EdDSA もいくつかのパラメーターがあります.
+元論文は [High-speed high-security signatures](https://ed25519.cr.yp.to/ed25519-20110926.pdf) ですが,
+[EdDSA for more curves](https://ed25519.cr.yp.to/eddsa-20150704.pdf) で一般化したパラメーターが以下のように記載されています.
 
 * 巨大な素数 $q$. $F_q$ の素となる[^ext]
 * $2^{b-1} > q$ である $b$. 公開鍵は b-bit, 署名は 2b-bit となる
 * 2b-bit の出力をする hash 関数 $H$
-* $c \in \{2,3\}$. 秘密鍵は $2^c$ の倍数となる
+* $c \in \\{2,3\\}$. 秘密鍵は $2^c$ の倍数となる
 * $c \le n \le b$ であるような $n$. 秘密鍵の先頭は n+1-bit 目は 1, それ以上は 0 で, 末尾 c-bit は 0 となる
 * 非ゼロの平方数 $a \in F_q$. $q \equiv 1 \mod 4$ の場合は $a = -1$, $q \equiv 3 \mod 4$ の場合は $a = 1$ が推奨されるそう
-* 非平方数 $d \in F_q$. $d \notin \{0, -1\}$ である
-* ベースポイント $B \in E = \{ (x, y) \in F_q \times F_q \| a x^2 + y^2 = 1 + dx^2y^2 \}$.
+* 非平方数 $d \in F_q$. $d \notin \\{0, -1\\}$ である
+* ベースポイント $B \in E = \\{ (x, y) \in F_q \times F_q \| a x^2 + y^2 = 1 + dx^2y^2 \\}$.
   * ちなみに $O = (0, 1) \in E$
-* $lB = 0 \land 2^c l = \#E$ であるような奇素数 $l$
+* $lB = 0 \land 2^c l = \\#E$ であるような奇素数 $l$
 * メッセージをhash化する prehash 関数　$H'$
   * hash関数が$H$, prehash 関数が $H'$ であるような EdDSA を H'-EdDSA-H というそう
   * 元論文では H' は id だった. この場合, PureEdDSA という
@@ -72,9 +75,11 @@ $$
 b-bit の秘密鍵 k に対して,
 
 $$
-H(k)=(h_0, ..., h_{2b-1})\\
-a=2^n + \sum_{c \le i \lt n} 2^i h_i \\
-A = aB
+\begin{aligned}
+H(k) = & (h_0, ..., h_{2b-1})\\
+a = & 2^n + \sum_{c \le i \lt n} 2^i h_i \\
+A = & aB
+\end{aligned}
 $$
 
 としたとき, A が公開鍵です.
@@ -83,9 +88,11 @@ $$
 メッセージ M に対する署名は
 
 $$
-r = H(h_b, ..., h_{2b-1}, H'(M))\\
-R = rB\\
-s = (r + H(R, A, H'(M))a) \mod l
+\begin{aligned}
+r = & H(h_b, ..., h_{2b-1}, H'(M))\\
+R = & rB\\
+s = & (r + H(R, A, H'(M))a) \mod l
+\end{aligned}
 $$
 
 としたときの, 2b-bit の $(R,s)$です. S は $\mod l$している都合で末尾 c bitは 0 になります.
@@ -98,13 +105,15 @@ $$sB = R + H(R, A, H'(M))A$$
 であれば成功です. これは
 
 $$
-sB = (r + H(R, A, H'(M))a + nl)B\\
-= rB + H(R, A, H'(M))aB + nlB\\
-= R + H(R, A, H'(M))A
+\begin{aligned}
+sB = & (r + H(R, A, H'(M))a + nl)B\\
+= & rB + H(R, A, H'(M))aB + nlB\\
+= & R + H(R, A, H'(M))A
+\end{aligned}
 $$
 
 なので署名が正しければ成り立ちます.
-$\#E = 2^c l$ なため $2^c$ 倍してもセキュリティレベルが落ちないそうで, プロトコルとしては以下が検証に使われます.
+$\\#E = 2^c l$ なため $2^c$ 倍してもセキュリティレベルが落ちないそうで, プロトコルとしては以下が検証に使われます.
 
 $$2^c sB = 2^c R + 2^c H(R, A, H'(M))A$$
 
@@ -113,14 +122,16 @@ $$2^c sB = 2^c R + 2^c H(R, A, H'(M))A$$
 EdDSA のインスタンスとしては Ed25519 が有名で, これは Pure-EdDSA-SHA512 です.
 
 $$
-q = 2^{255} - 19\\
-b = 256\\
-c = 3\\
-n = 254\\
-a = -1\\
-d = -\frac{121665}{121666}\\
-B_y = \frac{4}{5}\\
-l = 2^{252} + 27742317777372353535851937790883648493
+\begin{aligned}
+q = & 2^{255} - 19\\
+b = & 256\\
+c = & 3\\
+n = & 254\\
+a = & -1\\
+d = & -\frac{121665}{121666}\\
+B_y = & \frac{4}{5}\\
+l = & 2^{252} + 27742317777372353535851937790883648493
+\end{aligned}
 $$
 
 H は SHA512, H' は id です. $B_x$ は正(奇数を負, 偶数を正と定義します)の方を採用します.
@@ -131,14 +142,16 @@ H' を SHA512 とした場合, SHA-512-Ed25519-SHA-512 となり, 一応 Ed25519
 Ed25519 以外の EdDSA に馴染みはないのですが, Ed448 も  EdDSA としてはメジャーなようです. Ed448-SHAKE-256 は
 
 $$
-q = 2^{448} -2^{224} - 1\\
-b = 456\\
-c = 2\\
-n = 448\\
-a = 1\\
-d = -39081\\
-B_y = 19\\
-l = 2^{446} - 13818066809895115352007386748515426880336692474882178609894547503885
+\begin{aligned}
+q = & 2^{448} -2^{224} - 1\\
+b = & 456\\
+c = & 2\\
+n = & 448\\
+a = & 1\\
+d = & -39081\\
+B_y = & 19\\
+l = & 2^{446} - 13818066809895115352007386748515426880336692474882178609894547503885
+\end{aligned}
 $$
 
 H は SHAKE-256, H' は id です. 256 とありますが, 実際には出力ビット数は可変で, Ed448 の場合は 512 bit です. 一応同様に Ed448ph が定義されます.
@@ -161,6 +174,7 @@ def xrecover(y):
 ```
 
 この部分ではオイラーの規準(Euler's criterion):
+
 $$
 p^{\frac{q-1}{2}} \equiv 
 \begin{cases}
@@ -168,6 +182,7 @@ p^{\frac{q-1}{2}} \equiv
 -1 \mod q & \text{otherwise}
 \end{cases}
 $$
+
 が利用されています.
 
 2 は平方数でないので, $2^\frac{q-1}{2} \equiv -1 \mod q$ です.
